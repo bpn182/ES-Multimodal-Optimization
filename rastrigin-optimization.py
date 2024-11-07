@@ -2,9 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+# Sphere function: A simple convex function used for optimization problems.
+# The global minimum is at the origin (0,0,...,0) with a value of 0.
 def sphere_function(x):
     return sum([xi**2 for xi in x])
 
+# Ackley function: A widely used benchmark function for optimization algorithms.
+# It has a nearly flat outer region and a large hole at the center.
+# The global minimum is at the origin (0,0,...,0) with a value of 0.
 def ackley(x):
     n = len(x)
     sum1 = sum([xi**2 for xi in x])
@@ -13,19 +18,30 @@ def ackley(x):
     term2 = -np.exp(sum2 / n)
     return term1 + term2 + 20 + np.e
 
+# Rastrigin function: A non-convex function used as a performance test problem for optimization algorithms.
+# It has a large number of local minima, making it difficult for optimization algorithms to find the global minimum.
+# The global minimum is at the origin (0,0,...,0) with a value of 0.
 def rastrigin(x):
     A = 10
     n = len(x)
     return A * n + sum([xi**2 - A * np.cos(2 * np.pi * xi) for xi in x])
 
+# Rosenbrock function: Also known as the Rosenbrock's valley or Rosenbrock's banana function.
+# It is a non-convex function used to test the performance of optimization algorithms.
+# The global minimum is inside a long, narrow, parabolic shaped flat valley.
+# The global minimum is at (1,1,...,1) with a value of 0.
 def rosenbrock(x):
     return sum([100 * (x[i+1] - x[i]**2)**2 + (1 - x[i])**2 for i in range(len(x) - 1)])
 
+# Griewank function: A complex function used for testing optimization algorithms.
+# It has many widespread local minima, making it difficult for optimization algorithms to find the global minimum.
+# The global minimum is at the origin (0,0,...,0) with a value of 0.
 def griewank(x):
     sum_term = sum([xi**2 for xi in x]) / 4000
     prod_term = np.prod([np.cos(xi / np.sqrt(i+1)) for i, xi in enumerate(x)])
     return sum_term - prod_term + 1
 
+# Fitness function: First using rastrigin function
 def fitness(x):
     return rastrigin(x)
 
